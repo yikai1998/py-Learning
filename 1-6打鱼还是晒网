@@ -1,0 +1,21 @@
+"""
+1.6打鱼还是晒网
+中国有句俗语叫“三天打鱼两天晒网”。某人从1990年1月1日起便开始“三天打鱼两天晒网”，
+问这个人在以后的某一天中是“打鱼”还是“晒网”。
+"""
+
+# 我的答案
+import datetime
+
+date_from = datetime.date(1990, 1, 1)
+year = input('>> Year = ')
+month = input('>> Month = ')
+day = input('>> Day = ')
+start = datetime.datetime.now()
+date_to = datetime.date(year=int(year), month=int(month), day=int(day))
+day_diff = (date_to - date_from).days + 1
+result = '今天打鱼' if day_diff%5 in range(1,4) else '今天晒网'
+print(f'{datetime.date.strftime(date_to, '%Y年%m月%d日')} 与 {datetime.date.strftime(date_from, '%Y年%m月%d日')} 相差{day_diff}天')
+print(result)
+end = datetime.datetime.now()
+print(f'{(end - start).seconds} seconds')
