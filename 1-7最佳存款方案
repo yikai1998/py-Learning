@@ -1,0 +1,18 @@
+"""
+1.7最佳存款方案
+假设银行一年整存零取的月息为0.63%。
+现在某人手中有一笔钱，他打算在今后5年中的每年年底取出1000元，到第5年时刚好取完，
+请算出他存钱时应存入多少。
+"""
+
+# 我的答案
+import datetime
+
+
+start = datetime.datetime.now()
+m = 0
+for i in range(5):
+    m += (1000 / pow(1+0.63*0.01*12, i+1))
+print('存钱时应存入 %.2f元' % m)
+end = datetime.datetime.now()
+print(f'{(end - start).seconds} seconds')
