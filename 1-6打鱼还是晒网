@@ -18,4 +18,4 @@ result = '今天打鱼' if day_diff%5 in range(1,4) else '今天晒网'
 print(f'{datetime.date.strftime(date_to, '%Y年%m月%d日')} 与 {datetime.date.strftime(date_from, '%Y年%m月%d日')} 相差{day_diff}天')
 print(result)
 end = datetime.datetime.now()
-print(f'{(end - start).seconds} seconds')
+print(f'{(end - start).total_seconds()} seconds')
