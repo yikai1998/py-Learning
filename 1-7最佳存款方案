@@ -15,4 +15,4 @@ for i in range(5):
     m += (1000 / pow(1+0.63*0.01*12, i+1))
 print('存钱时应存入 %.2f元' % m)
 end = datetime.datetime.now()
-print(f'{(end - start).seconds} seconds')
+print(f'{(end - start).total_seconds()} seconds')
