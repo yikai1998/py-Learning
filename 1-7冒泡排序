@@ -1,0 +1,25 @@
+"""
+1.7冒泡排序
+对N个整数（数据由键盘输入）进行升序排列
+"""
+
+# 我的答案
+import datetime
+
+number = []
+amount = input('>> 需要输入几个整数：')
+for _ in range(int(amount)):
+    add = input('>> ')
+    number.append(int(add))
+start = datetime.datetime.now()
+print('>>')
+for r in range(len(number)):
+    for i in range(len(number)-1):
+        left = number[i]
+        right = number[i+1]
+        if left > right:
+            number[i] = right
+            number[i+1] = left
+        print(number)
+end = datetime.datetime.now()
+print(f'{(end - start).total_seconds()} seconds')
