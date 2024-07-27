@@ -1,0 +1,18 @@
+"""
+2.3求车速
+一辆以固定速度行驶的汽车，司机在上午10点看到里程表上的读数是一个对称数（即这个数从左向右读和从右向左读是完全一样的），为95859。
+两小时后里程表上出现了一个新的对称数，该数仍为5位数。问该车的速度是多少？新的对称数是多少？
+"""
+
+# 我的答案
+spd_list = []
+for speed in range(95860, 100000):
+    speed_l = str(speed)[:3]
+    speed_r = str(speed)[:-4:-1]
+    if speed_l == speed_r:
+        spd_list.append(speed)
+print(spd_list)
+for i in spd_list:
+    if ((i-95859)/2) > 300:
+        break
+    print(f'新对称数是 {i}，车速为 {(i-95859)/2}km/h')
