@@ -1,0 +1,32 @@
+"""
+1.9折半查找
+N个有序整数数列已放在一维数组中，利用二分查找法查找整数m在数组中的位置。
+若找到，则输出其下标值；反之，则输出“Not be found!”。
+"""
+
+# 我的答案
+x = input('>> 希望输入几个数字：')
+number_list = []
+for i in range(int(x)):
+    number_list.append(int(input('>> 输入数字：')))
+
+search_for = int(input('>> 输入你想找的数字：'))
+goOn = True
+offset = 0
+number_list = sorted(number_list)
+print(f'>> 完整列表 {number_list}')
+while goOn:
+    current_len = len(number_list)
+    cut = int(current_len / 2) + 1
+    try:
+        print(f'>> 寻找中 {number_list[:cut]}')
+        find_it = number_list[:cut].index(search_for)
+        print(f'找到了，在第{offset+1+find_it}位')
+        goOn = False
+    except:
+        if cut == 1:
+            print(f'>> Not be found, 你要找的数字根本不在list内！')
+            goOn = False
+            continue
+        number_list = number_list[cut:]
+        offset += cut
