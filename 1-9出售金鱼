@@ -1,0 +1,20 @@
+"""
+1.9出售金鱼
+小明将养的一缸金鱼分5次出售：
+第1次卖出全部的一半加1/2条；
+第2次卖出余下的三分之一加1/3条；
+第3次卖出余下的四分之一加1/4条；
+第4次卖出余下的五分之一加1/5条；
+最后卖出余下的11条。
+试编程行求出原来鱼缸中共有多少条金鱼。
+"""
+
+# 我的答案
+import datetime
+start = datetime.datetime.now()
+fish = 11
+for i in range(5, 1, -1):
+    fish = (fish + 1/i) * i/(i-1)
+print(f'原来鱼缸中一共有{fish}条金鱼')
+end = datetime.datetime.now()
+print(f'共用时 {(end-start).total_seconds()}秒')
