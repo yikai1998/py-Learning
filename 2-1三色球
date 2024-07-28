@@ -1,0 +1,43 @@
+"""
+2.1 三色球
+一个口袋中放有12个球，已知其中3个是红的，3个是白的，6个是黑的，
+现从中任取8个，问共有多少种可能的颜色搭配？
+"""
+
+import datetime
+
+# 我的答案
+start = datetime.datetime.now()
+ball_list = ['red'] * 3 + ['white'] * 3 + ['black'] * 6
+choice = []
+print(ball_list)
+for b1 in ball_list:
+    for b2 in ball_list:
+        for b3 in ball_list:
+            for b4 in ball_list:
+                if [b1, b2, b3, b4].count('red') > 3 or [b1, b2, b3, b4].count('white') > 3:
+                    continue
+                else:
+                    choice.append(sorted([b1, b2, b3, b4]))
+
+x = []
+for com in choice:
+    if com not in x:
+        x.append(com)
+print(x, f'共{len(x)}种可能')
+end = datetime.datetime.now()
+print(f'共用时{(end-start).total_seconds()}秒')
+
+
+# 参考答案
+start = datetime.datetime.now()
+print("\t 红球 \t 白球 \t 黑球")
+print("........................")
+num = 0
+for m in range(0, 4):
+    for n in range(0, 4):
+        if 8-m-n <= 6:
+            num += 1
+            print("%2d: %d \t\t %d \t\t %d" %(num, m, n, 8-m-n))
+end = datetime.datetime.now()
+print(f'共用时{(end-start).total_seconds()}秒')
