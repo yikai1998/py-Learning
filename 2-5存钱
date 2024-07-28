@@ -1,0 +1,42 @@
+"""
+2.5存钱
+假设银行整存整取存款不同期限的月利率为：
+·0.63%，期限为1年；
+·0.66%，期限为2年；
+·0.69%，期限为3年；
+·0.75%，期限为5年；
+·0.84%，期限为8年。
+现在已知某人手上有2000元，要求通过计算选择出一种存钱方案，使得这笔钱存入银行20年后获得的利息最多。
+假定银行对超出存款期限的那部分时间不付利息。
+"""
+
+# 我的答案
+import numpy as np
+menu = np.array([1, 2, 3, 5, 8])
+rate = np.array([0.0063*12, 0.0066*12, 0.0069*12, 0.0075*12, 0.0084*12])
+values = np.arange(0, 21)
+futures = []
+futures_dic = {}
+
+combinations = np.array(np.meshgrid(values, values, values, values, values)).T.reshape(-1, 5)
+
+for choice in combinations:
+    if np.dot(menu, choice) == 20:
+        com = f'{choice[0]}*期限1年 | {choice[1]}*期限2年 | {choice[2]}*期限3年 | {choice[3]}*期限5年 | {choice[4]}*期限8年'
+        print(com)
+        amount = 0
+        for x, y, z in zip(choice, rate, menu):
+            if x == 0:
+                continue
+            amount += pow(1+z*y, x)
+        amount *= 2000
+        futures.append(amount)
+        futures_dic.update(
+            {com: amount}
+        )
+
+# futures_dic = dict(sorted(futures_dic.items(), key=lambda x: x[1]))
+for i in futures_dic:
+    print(i)
+print(max(futures))
+print('>> 最合理选择: ''\n'.join([x for x, y in futures_dic.items() if y == max(futures)]))
