@@ -1,0 +1,16 @@
+"""
+2.7爱因斯坦的数学题
+爱因斯坦出了一道这样的数学题：
+有一条长阶梯，若每步跨2阶，则最后剩一阶；若每步跨3阶，则最后剩2阶；若每步跨5阶，则最后剩4阶；若每步跨6阶，则最后剩5阶；只有每次跨7阶，最后才正好一阶不剩。
+请问在1到n内，有多少个数能满足？
+"""
+
+#我的答案
+stair = 8
+ans = []
+end = int(input('>> how many stairs: '))
+for i in range(stair, end+1):
+    if all([i%2==1, i%3==2, i%5==4, i%6==5, i%7==0]):
+        ans.append(i)
+        print(f'it might be {i} stairs')
+print(f'>> totally there might have {len(ans)} possibilities of stairs, in range of 1 to {end+1} stairs')
