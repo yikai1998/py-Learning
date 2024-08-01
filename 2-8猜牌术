@@ -9,32 +9,20 @@
 问魔术师手中的牌原始次序是怎样安排的？
 """
 
-# 我的答案
-go = 1
-next = 1
-card = [1] + [0] * 12
-idx_dic = {0: 0}
-while go:
-    pos = 0
-    for i in range(2, next+1):
-        pos += i
-    print(pos)
-    idx_dic.update({next: pos})
-    x, t = 0, 0
-    while True:
-        if x == pos:
-            while card[(t+1)%13] != 0:
-                t += 1
-            card[t%13] = next
-            break
+# 我的答案[借鉴]
 
-        if x < pos and (card[t%13] == 0 or int(t/13) <= int(idx_dic[card[t%13]]/12)):
-            x += 1
-            t += 1
-        else:
-            t += 1
-
-    next += 1
-    if next > 13:
-        go = 0
+card = [0] * 13
+idx = 0
+for number in range(1, 14):
+    blank = 0  # reset the count of [0] met
+    while blank <= number-1:  # when you met the amount of [0], which means this position should store this amount
+        if idx > 12:  # reset the index
+            idx = 0
+        if card[idx] != 0:  # ![0] met
+            idx += 1
+        else:  # [0] met
+            if blank == number-1:  # requirement is met
+                card[idx] = number  # update
+            idx += 1  # index still goes on, no matter whether the requirement is met
+            blank += 1  # update the blank, in order to jump out of the loop, and in next iteration the blank would be reset
 print(card)
