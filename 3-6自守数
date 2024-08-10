@@ -1,0 +1,20 @@
+"""
+3.6自守数
+自守数是指一个数的平方的尾数等于该数自身的自然数。
+例如，5^2=25，25^2=625，76^2=5776，9376^2=87 909 376。求100 000以内的自守数。
+"""
+
+# 我的答案
+import datetime
+start = datetime.datetime.now()
+x = int(input('>> 输入一个自然数下限：'))
+y = int(input('>> 输入一个自然数上限：'))
+s_number_list = []
+for s in range(x, y+1):
+    ss = str(s**2)
+    if ss.find(str(s)) == len(ss)-len(str(s)):
+        s_number_list.append(s)
+print(s_number_list)
+
+end = datetime.datetime.now()
+print(f'耗时：{(end-start).total_seconds()}秒')
