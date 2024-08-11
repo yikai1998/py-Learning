@@ -1,0 +1,32 @@
+"""
+3.8黑洞数
+编程求三位数中的“黑洞数”。
+黑洞数又称陷阱数，是指任何一个数字不全相同的整数，在经过有限次“重排求差”操作后，总会得到某一个或一些数，这些数即为黑洞数。
+“重排求差”操作是将组成一个数的各位数字重排，将得到的最大数减去最小数。
+例如，207的“重排求差”操作序列是：720-027=693，963-369=594，954-459=495，此时再进行“重排求差”操作不会发生改变。
+再用208计算一次，也是停止到495，所以495是三位黑洞数
+"""
+
+# 我的答案(借鉴)
+import datetime
+start = datetime.datetime.now()
+goOn = 1
+black_hole_list = []
+for number in range(100, 1000):
+    while goOn:
+        n = sorted(list(str(number)), reverse=True)
+        print(n)
+        big = int(n[0])*100 + int(n[1])*10 + int(n[2])*1
+        small = int(n[0])*1 + int(n[1])*10 + int(n[2])*100
+        number_ = big - small
+        if number_ == int(number):
+            goOn = 0
+            black_hole_list.append(number_)
+        else:
+            number = number_
+            if number < 100:
+                break
+black_hole_list = set(black_hole_list)
+print(f'>> 三位数中所有的黑洞数为 {black_hole_list}')
+end = datetime.datetime.now()
+print(f'耗时：{(end-start).total_seconds()}秒')
