@@ -4,7 +4,7 @@
 所谓勾股数，是指能够构成直角三角形三条边的三个正整数（a，b，c）。
 """
 
-# 我的答案(借鉴)
+# 我的答案
 import datetime
 import math
 start = datetime.datetime.now()
