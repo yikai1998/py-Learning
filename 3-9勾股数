@@ -1,0 +1,22 @@
+"""
+3.9勾股数
+求100以内的所有勾股数。
+所谓勾股数，是指能够构成直角三角形三条边的三个正整数（a，b，c）。
+"""
+
+# 我的答案(借鉴)
+import datetime
+import math
+start = datetime.datetime.now()
+
+gg_list = []
+for a in range(1, 101):
+    for b in range(1, 101):
+        c = math.sqrt(a**2+b**2)
+        if c % 1 == 0 and c <= 100:
+            gg_list.append((a, b, int(c)))
+gg_list = {tuple(sorted(x)) for x in gg_list}
+print(gg_list)
+print(len(gg_list))
+end = datetime.datetime.now()
+print(f'耗时：{(end-start).total_seconds()}秒')
