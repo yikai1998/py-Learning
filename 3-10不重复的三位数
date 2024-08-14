@@ -1,0 +1,21 @@
+"""
+3.10不重复的三位数
+用1、2、3、4共4个数字能组成多少个互不相同且无重复数字的三位数？都是多少？
+"""
+
+# 我的答案
+import datetime
+start = datetime.datetime.now()
+hun_list = []
+n = [1, 2, 3, 4]
+for x in n:
+    for y in n:
+        for z in n:
+            if (x-y)*(x-z)*(y-z) != 0:
+                f = 100*x + 10*y + 1*z
+                hun_list.append(f)
+hun_list = set(tuple(hun_list))
+print(hun_list)
+print(f'一共有{len(hun_list)}个不重复的三位数')
+end = datetime.datetime.now()
+print(f'耗时：{(end-start).total_seconds()}秒')
