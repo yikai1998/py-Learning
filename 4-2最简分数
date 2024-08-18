@@ -1,0 +1,25 @@
+"""
+4.2最简分数
+按递增顺序依次列出所有分母为40、分子小于40的最简分数
+"""
+
+# 我的答案
+import datetime
+
+start = datetime.datetime.now()
+mon = 40
+ff_list = [x for x in range(2, 40) if mon%x == 0]
+son = []
+go = 1
+for son_try in range(1, 41):
+    go = 1
+    for i in ff_list:
+        if son_try % i == 0:
+            go = 0
+            break
+    if go == 1:
+        son.append(son_try)
+son = ['/'.join([str(x), '40']) for x in son]
+print(f'按递增顺序依次列出所有分母为40、分子小于40的最简分数: {son}')
+end = datetime.datetime.now()
+print(f'总共耗时 {(end-start).total_seconds()}秒')
