@@ -1,0 +1,37 @@
+"""
+4.1 将真分数分解为埃及分数
+真分数（a proper fraction）是指分子比分母小的分数，其分数值小于1。如1/2、3/5、8/9等都是真分数。
+分子是1的分数，叫单位分数。古代埃及人在进行分数运算时，只使用分子是1的分数，因此这种分数也叫作埃及分数，或者叫单分子分数。例如，8/11=1/2+1/5+1/55+1/110。
+现输入一个真分数，请将该分数分解为埃及分数。
+"""
+
+# 我的答案
+import datetime
+import sys
+
+son = int(input('>> 输入分子：'))
+mother = int(input('>> 输入分母：'))
+start = datetime.datetime.now()
+if son >= mother:
+    print('>> 你输入的不是真分数；Error!')
+    sys.exit()
+print(f'你输入的真分数 {str(son)}/{str(mother)}')
+eg_list = '= 0'
+goOn = 1
+while goOn:
+    if mother % son == 0:
+        goOn = 0
+        eg_list += '/'.join([' + 1', str(int(mother/son))])
+    else:
+        x = mother//son + 1
+        eg_list += '/'.join([' + 1', str(x)])
+        son = son*x - mother
+        mother *= x
+        if all([son==3, mother%2==0]):
+            eg_list += '/'.join([' + 1', str(mother)])
+            eg_list += '/'.join([' + 1', str(int(mother//2))])
+            goOn = 0
+print(f'{eg_list}')
+
+end = datetime.datetime.now()
+print(f'耗时：{(end-start).total_seconds()}秒')
