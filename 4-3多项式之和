@@ -1,0 +1,17 @@
+"""
+4.3 多项式之和
+计算 S = 1 + 1/(1*2) + 1/(1*2*3) + ... + 1/(1*2*3*...*50)
+"""
+# 我的答案
+import datetime
+
+start = datetime.datetime.now()
+s = 0
+for i in range(1, 51):
+    under = 1
+    for x in range(1, i+1):
+        under *= x
+    s += 1/under
+print(s)
+end = datetime.datetime.now()
+print(f'共用时 {(end-start).total_seconds()}秒')
