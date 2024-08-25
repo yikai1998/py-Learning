@@ -1,0 +1,20 @@
+"""4.5 最小公倍数
+求任意两个正整数的最小公倍数（Least Common Multiple，LCM）
+"""
+
+import datetime
+start = datetime.datetime.now()
+end = datetime.datetime.now()
+a = int(input('第一个正整数：'))
+b = int(input('第二个正整数：'))
+small_mul = a if a >= b else b
+go = 1
+while go:
+    if small_mul%a + small_mul%b == 0:
+        print(f'最小公倍数为 {small_mul}')
+        go = 0
+    else:
+        small_mul += 1
+
+
+print(f'共耗时 {(end-start).total_seconds()}秒')
