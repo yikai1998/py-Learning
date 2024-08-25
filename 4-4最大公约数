@@ -1,0 +1,19 @@
+"""4.4 最大公约数
+求任意两个正整数的最大公约数 (greatest common divisor)
+"""
+
+import datetime
+start = datetime.datetime.now()
+end = datetime.datetime.now()
+a = int(input('第一个正整数：'))
+b = int(input('第二个正整数：'))
+big_div = a if a <= b else b
+for _ in range(big_div):
+    if a%big_div + b%big_div == 0:
+        print(f'最大公约数是 {big_div}')
+        break
+    else:
+        big_div -= 1
+
+
+print(f'共耗时 {(end-start).total_seconds()}秒')
