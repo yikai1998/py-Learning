@@ -1,0 +1,15 @@
+"""
+4.6歌星大奖赛
+在歌星大奖赛中，有10个评委为参赛的选手打分，分数为1～100分。
+选手最后得分为：去掉一个最高分和一个最低分后其余8个分数的平均值。请编写一个程序实现
+"""
+
+score_list = []
+for _ in range(10):
+    x = float(input('>> 请打分：'))
+    score_list.append(x)
+score_list.sort(reverse=False)
+score_list.pop(0)
+score_list.pop(-1)
+print(score_list)
+print(f'>> 平均分为：{round(sum(score_list) / len(score_list), 2)}')
