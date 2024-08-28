@@ -1,0 +1,20 @@
+"""
+4.7 分数比较
+比较两个分数的大小
+"""
+# 我的答案
+import datetime
+
+start = datetime.datetime.now()
+a = float(input('>> 输入分子：'))
+b = float(input('>> 输入分母：'))
+c = float(input('>> 输入分子：'))
+d = float(input('>> 输入分母：'))
+if a/b - c/d == 0:
+    print('一样大')
+elif a/b - c/d > 0:
+    print(f'{a}/{b}比{c}/{d}大')
+else:
+    print(f'{a}/{b}比{c}/{d}小')
+end = datetime.datetime.now()
+print(f'共用时 {(end-start).total_seconds()}秒')
