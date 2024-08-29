@@ -1,0 +1,22 @@
+"""
+5.1 素数
+求给定范围start～end之间的所有素数
+"""
+# 我的答案
+import datetime
+
+start = datetime.datetime.now()
+a = int(input('>> 起始整数：'))
+b = int(input('>> 结尾整数：'))
+primality_list = []
+for n in range(a, b+1):
+    add = 1
+    for i in range(2, n):
+        if n % i == 0:
+            add = 0
+            break
+    if add == 1:
+        primality_list.append(str(n))
+print(f'{a}~{b}之间的所有素数为 {' '.join(primality_list)}')
+end = datetime.datetime.now()
+print(f'共用时 {(end-start).total_seconds()}秒')
