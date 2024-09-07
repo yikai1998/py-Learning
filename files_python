@@ -1,0 +1,80 @@
+# coding=gbk
+"""
+Python处理文本的25个经典操作
+公众号文章：python学习杂记 2024-06-23
+"""
+import os
+
+
+desktop = os.path.join(os.path.expanduser("~"), 'Desktop') + '\\'
+
+# 打开文件并读取内容
+with open(file=desktop+'三字经.txt', mode='r', encoding='utf-8') as ff:
+    content = ff.read()
+print(content)
+
+# 整体覆盖
+with open(file=desktop+'三字经.txt', mode='w', encoding='utf-8') as ff:
+    ff.write('你妈的，这是完全覆盖')
+
+# 追加内容在末尾
+with open(file=desktop+'三字经.txt', mode='a', encoding='utf-8') as ff:
+    ff.write('\n“跟在最后来个操你妈”\n嘿嘿第三行了')
+
+# 读取文件的特定某行，如第3行
+with open(file=desktop+'三字经.txt', mode='r', encoding='utf-8') as ff:
+    line = ff.readlines()[2]
+print(line)
+
+# 复制文件内容，并写入新文件
+with open(file=desktop+'三字经.txt', mode='r', encoding='utf-8') as ff, open(file=desktop+'三字经_copy.txt', mode='w', encoding='utf-8') as ff_copy:
+    ff_copy.write(ff.read())
+
+# 重命名，且移动文件，os.rename默认提前存在该路径
+# os.makedirs(desktop+'newFolder2\\test', exist_ok=True)  # If any of these directories already exist, exist_ok=True will prevent os.makedirs from raising an error.
+# 如果路径中的某个部分已经存在，但不是一个目录而是一个文件，那么 os.makedirs 会抛出 FileExistsError，即使设置了 exist_ok=True。
+# os.rename(desktop+'三字经.txt', desktop+'newFolder2\\新三字经.txt')  # 当文件已存在时，无法创建该文件。
+
+"""
+os.mkdir()
+This function is used to create a single directory level.
+It does not create nested directories; if the parent directory does not exist, it will raise a FileNotFoundError.
+os.makedirs('mydir/subdir1/subdir2')
+In the example above, os.mkdir will only create mydir, and if mydir does not exist, it will raise an error. On the other hand, os.makedirs will create mydir, mydir/subdir1, and mydir/subdir1/subdir2, creating all necessary intermediate directories. If any of these directories already exist and exist_ok is not set to True, it will raise a FileExistsError.
+"""
+
+# 删除文件
+# os.remove(desktop+'三字经_copy.txt')
+
+# 删除文件夹
+# os.rmdir(desktop+'newFolder2\\test')
+
+"""
+os.rmdir():
+
+This function is used to remove a single directory.
+It can only remove empty directories. If the directory contains any files or subdirectories, os.rmdir will raise an OSError.
+It does not work on files; trying to use os.rmdir on a file will raise an error.
+
+os.remove():
+This function is used to remove a file or a symbolic link.
+It cannot remove directories, even if they are empty. If you try to use os.remove on a directory, it will raise an OSError.
+It is designed to work with files and symbolic links, not directories.
+"""
+
+# 遍历文件夹中的所有文件
+# for file in os.listdir('.'):
+for file in os.listdir(desktop):
+    print(file)
+
+# 获取文件大小
+print(os.path.getsize(desktop+'三字经_copy.txt'))
+
+# 检查路径是否存在
+print(os.path.exists(desktop+'三字经_copy.txt'))
+print(os.path.exists(desktop+'newFolder2'))
+
+# 确认文件行数
+with open(file=desktop+'三字经.txt', mode='r', encoding='utf-8') as ff:
+    line_count = sum(1 for line in ff)
+print(line_count)
