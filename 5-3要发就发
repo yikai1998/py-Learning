@@ -1,0 +1,27 @@
+# coding=gbk
+"""
+5.3 要发就发
+“1898——要发就发”。
+请将不超过1993的所有素数从小到大排成第一行，第二行上的每个数都等于它上面相邻两个素数之差。
+编程求出：
+第二行数中是否存在若干个连续的整数，它们的和恰好为1898？假如存在的话，又有几种这样的情况？
+两行数据分别如下：
+第一行：2，3，5，7，11，13，17...1979，1987，1993
+第二行：1，2，2，4，2，4...8，6
+"""
+not_prime_list = []
+for n in range(2, 1994):
+    for i in range(2, n):
+        if n % i == 0:
+            not_prime_list.append(n)
+            break
+prime_list = [x for x in range(2, 1994) if x not in not_prime_list]
+second_line = []
+for idx, n in enumerate(prime_list[:-1]):
+    second_line.append(prime_list[idx+1]-n)
+print(second_line)
+for group in range(2, len(second_line)):
+    for start in range(0, len(second_line)-group+1):
+        if sum(second_line[start:start+group+1]) == 1898:
+            print(second_line[start:start+group+1])
+            print(prime_list[start], prime_list[start+group])
