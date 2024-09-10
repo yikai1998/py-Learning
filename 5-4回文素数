@@ -1,0 +1,31 @@
+# coding=gbk
+"""
+5.4 回文素数
+本节要研究回文素数的问题，先来看看什么是回文素数。
+所谓回文素数指的是，对一个整数n从左向右和从右向左读其数值都相同且n为素数，则称整数n为回文素数。
+对于偶数位的整数，除了11以外，都不存在回文素数。即所有的4位整数、6位整数、8位整数等都不存在回文素数。
+下面列出两位和三位整数中包含的所有回文素数。
+两位回文素数：11。
+三位回文素数：101，131，151，181，191，313，353，373，383，727，757，787，797，919，929。
+本节要求解的问题是：求出所有不超过1000的回文素数。
+"""
+not_prime_list = []
+for n in range(11, 1001):
+    for i in range(2, n):
+        if n % i == 0:
+            not_prime_list.append(n)
+            break
+prime_list = [x for x in range(11, 1001) if x not in not_prime_list]
+print(prime_list)
+remove_list = []
+for n in prime_list:
+    rn = int(str(n)[::-1])
+    if n != rn:
+        remove_list.append(n)
+    else:
+        for i in range(2, rn):
+            if rn % i == 0:
+                remove_list.append(n)
+                break
+back_prime_list = [x for x in prime_list if x not in remove_list]
+print(back_prime_list)
