@@ -1,0 +1,40 @@
+# coding=gbk
+"""
+6.2 新郎和新娘
+有三对情侣结婚，假设三个新郎为A、B、C，三个新娘为X、Y、Z。
+有参加婚礼的人搞不清谁和谁结婚，所以去询问了这六位新人中的三位，得到的回答为：
+新郎A说他要和新娘X结婚；新娘X说她的未婚夫是新郎C；而新郎C说他要和新娘Z结婚。
+听到这样的回答后，提问者知道他们都是在开玩笑，说的都是假话，但他仍搞不清谁和谁结婚。现在请编程求出到底哪位新郎和哪位新娘结婚。
+"""
+
+# 我的答案
+bridegroom = ['a', 'b', 'c']
+bride = ['x', 'y', 'z']
+pp_dic = {'a': [], 'b': [], 'c': []}
+for m in bridegroom:
+    for f in bride:
+        pp_dic[m].extend(f)
+
+print(pp_dic)
+for (i, j) in [('a', 'x'), ('c', 'x'), ('c', 'z')]:
+    pp_dic[i].remove(j)
+
+go = 1
+assigned = []
+set = 0
+while go:
+    for m in pp_dic.keys():
+        if len(pp_dic[m]) == 1:
+            if pp_dic[m][0] not in assigned:
+                print(f'{m}配对{pp_dic[m][0]}')
+                assigned.append(pp_dic[m][0])
+                set += 1
+            else:
+                continue
+
+        for boy in pp_dic[m]:
+            if boy in assigned:
+                pp_dic[m].remove(boy)
+
+        if set == 3:
+            go = 0
