@@ -1,0 +1,57 @@
+"""
+7.7 24点游戏
+在屏幕上输入1～10范围内的4个整数（可以有重复），对它们进行加、减、乘、除四则运算后（可以任意的加括号限定计算的优先级），寻找计算结果等于24的表达式。
+例如输入4个整数4、5、6、7，可得到表达式：4*((5-6)+7)=24。这只是一个解，本题目要求输出全部的解。要求表达式中数字的顺序不能改变。
+"""
+
+
+import itertools
+a = int(input('>> 1st card number: '))
+b = int(input('>> 2nd card number: '))
+c = int(input('>> 3rd card number: '))
+d = int(input('>> 4th card number: '))
+
+result = 0
+
+number_list = [a, b, c, d]
+operation = ['add', 'deduct', 'multi', 'divide']
+list_comb = list(itertools.permutations(number_list))
+
+for i in list_comb:
+    list_selected = i
+    n_1 = list_selected[0]
+    n_2 = list_selected[1]
+    n_3 = list_selected[2]
+    n_4 = list_selected[3]
+    for o in operation:
+        if o == 'add':
+            result1 = n_1 + n_2
+        if o == 'deduct':
+            result1 = n_1 - n_2
+        if o == 'multi':
+            result1 = n_1 * n_2
+        if o == 'divide':
+            result1 = n_1 / n_2
+
+        for p in operation:
+            if p == 'add':
+                result2 = result1 + n_3
+            if p == 'deduct':
+                result2 = result1 - n_3
+            if p == 'multi':
+                result2 = result1 * n_3
+            if p == 'divide':
+                result2 = result1 / n_3
+
+            for e in operation:
+                if e == 'add':
+                    result3 = result2 + n_4
+                if e == 'deduct':
+                    result3 = result2 - n_4
+                if e == 'multi':
+                    result3 = result2 * n_4
+                if e == 'divide':
+                    result3 = result2 / n_4
+
+                if result3 - 24 == 0:
+                    print(list_selected, o, p, e)
