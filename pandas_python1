@@ -166,6 +166,9 @@ Q1成绩不小于60分且为C组成员 --> ~(df.Q1<60) & (df['team']=='C')
 # df = pd.DataFrame([[1,2], [3,4]], columns=list('AB'))
 # df2 = pd.DataFrame([[101,102,103], [103,104,105]], columns=list('ABC'))
 # print(df.append(df2).reset_index()) #类似UNION ALL的向下拼接，如果值有缺失则显示NaN
+# 官方推荐使用concat，适用于水平（列）连接和垂直（行）连接。append 更像 concat 的一个特定应用场景
+# df_combined = pd.concat([df1, df2], ignore_index=True)
+# df_combined = pd.concat([df1, df2], axis=1)
 
 # 4.11删除
 # print(df.pop('姓名'))
