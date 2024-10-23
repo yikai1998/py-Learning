@@ -1,0 +1,13 @@
+def check(func):
+    def inside(a, b):
+        if b == 0:
+            print('can not divide by 0')
+            return 0
+        func(a, b)
+    return inside
+
+@check  # equals div = check(div)
+def div(a, b):
+    return a / b
+
+print(div(5, 0))
